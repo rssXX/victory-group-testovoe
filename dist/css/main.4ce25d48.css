@@ -1,0 +1,10 @@
+/*!******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/App.module.scss ***!
+  \******************************************************************************************************************************************/
+.src-App-module__container {
+  text-align: center;
+  margin-top: 50px;
+}
+.src-App-module__container h1 {
+  color: #3498db;
+}
