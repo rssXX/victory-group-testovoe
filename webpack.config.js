@@ -25,7 +25,8 @@ module.exports = (env) => {
         module: {
             rules: [
                 {
-                    test: /\.s[ac]ss$/i,
+                    // Правило для SCSS-модулей
+                    test: /\.module\.s[ac]ss$/i,
                     use: [
                         MiniCssExtractPlugin.loader,
                         {
@@ -34,13 +35,40 @@ module.exports = (env) => {
                                 modules: {
                                     namedExport: false,
                                     exportLocalsConvention: 'as-is',
-                                    localIdentName: env.mode === 'development'? '[path][name]__[local]' : '[hash:base64]'
+                                    localIdentName: env.mode === 'development' ? '[path][name]__[local]' : '[hash:base64]'
                                 }
                             }
                         },
                         "sass-loader",
                     ],
                 },
+                {
+                    // Правило для обычных SCSS-файлов
+                    test: /\.s[ac]ss$/i,
+                    exclude: /\.module\.s[ac]ss$/i,  // Исключаем файлы с модулями
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        "css-loader", // Без опции modules для обычных файлов
+                        "sass-loader",
+                    ],
+                },
+                // {
+                //     test: /\.s[ac]ss$/i,
+                //     use: [
+                //         MiniCssExtractPlugin.loader,
+                //         {
+                //             loader: "css-loader",
+                //             options: {
+                //                 modules: {
+                //                     namedExport: false,
+                //                     exportLocalsConvention: 'as-is',
+                //                     localIdentName: env.mode === 'development'? '[path][name]__[local]' : '[hash:base64]'
+                //                 }
+                //             }
+                //         },
+                //         "sass-loader",
+                //     ],
+                // },
                 {
                     test: /\.jsx?$/,
                     exclude: /node_modules/,

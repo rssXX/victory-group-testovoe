@@ -1,0 +1,10 @@
+.top{
+  background-color: black;
+
+  .wrapper{
+    padding: 6px 0;
+    color: var(--color-gray);
+    display: flex;
+    justify-content: space-between;
+  }
+}
